@@ -1,0 +1,60 @@
+(define (first-denomination kinds-of-coins)
+	(cond ((= kinds-of-coins 1) 1)
+		((= kinds-of-coins 2) 5)
+		((= kinds-of-coins 3) 10)
+		((= kinds-of-coins 4) 25)
+		((= kinds-of-coins 5) 50)))
+
+(define 
+	(pasTri row index)
+	(if 
+		(or (= row index) (= index 1))
+		1
+		(+ 
+			(pasTri (- row 1) index)
+			(pasTri (- row 1) (- index 1))
+		) 
+	)
+)
+
+(pasTri 2 1)
+
+base: if 1st or last element, 1
+row 2
+
+1
+2
+3
+4
+5
+6
+
+1:                    		1
+2:                    	   1 1
+3:                        1 2 1
+4:                       1 3 3 1
+5:                      1 4 6 4 1
+6:                    1 5 10 10 5 1
+7:					 1 6 15 20 15 6 1
+
+if 2nd last
+	sum last and second last of above row
+
+if 3rd last
+	sum 2nd last and 3rd last of above row
+if 4th last
+	sum 3rd last and 4th last of above row
+
+
+SOLUTION:
+(define 
+	(pasTri row index)
+	(if 
+		(or (= row index) (= index 1))
+		1
+		(+ 
+			(pasTri (- row 1) index)
+			(pasTri (- row 1) (- index 1))
+		) 
+	)
+)
